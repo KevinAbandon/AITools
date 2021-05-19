@@ -1,0 +1,142 @@
+<MainBar>:
+	pos_hint:{"top":1}	
+	ActionView:
+		use_separator: True
+		ActionPrevious:
+			title: 'Metodos IA'
+			app_icon: 'log.png'
+            with_previous: False
+        ActionButton:
+        	backgroud_normal: 'log.png'
+        	text: 'RUN'
+            on_press: root.fRUN()
+        ActionButton:
+        	backgroud_normal: 'log.png'
+        	text: 'PLOT'
+            on_press: root.fPLOT()
+        ActionButton:
+        	backgroud_normal: 'log.png'
+        	text: 'CLOSE'
+            on_press: root.fCLOSE()
+
+
+<MetodosMenu>:
+	orientation: 'vertical'
+	size_hint: (0.7, 1)
+
+<ConfigMenu>:
+	orientation: 'vertical'
+	BoxLayout:
+		Label:
+			text: 'Fichero:'
+		Spinner:
+			pos_hint: {'center_x':0.5, 'center_y':0.5}
+			size_hint: (0.3, 0.9)
+			text: 'Tipo'
+			values: ('TXT', 'CSV', 'XML', 'JSON')
+			on_text: root.selectTipoArchivo(self.text)
+		Button:
+			text: 'Load'
+			size_hint: (0.2, 0.9)
+			pos_hint: {'center_x':0.5, 'center_y':0.5}
+			on_press: root.LFF()
+	BoxLayout:
+		orientation: 'horizontal'
+		TextInput:
+			multiline: False
+			hint_text: 'Nombre del Archivo: '
+			size_hint: (1, 1)
+			pos_hint: {'center_x':0.5, 'center_y':0.5}
+			on_text: root.getFileName(self.text)
+	BoxLayout:
+		orientation: 'horizontal'
+		Label:
+			text: 'Metodo:'
+		Spinner:
+			size_hint: (0.3, 0.9)
+			text: 'Seleccionar'
+			values: ('APRIORI', 'PEARSON', 'EUCLIDEAN', 'KMEANS','LOGISTIC')
+			on_text: root.SMF(self.text)
+
+<ConfigUtilities>:
+	orientation: 'horizontal'
+
+<AprioriConfig>:
+	orientation: 'horizontal'
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			Label:
+				text: 'Soporte minimo: '
+			TextInput:
+				multiline: False
+				size_hint: (0.7, 0.17)
+				pos_hint: {'center_x':0.5, 'center_y':0.5}
+				hint_text: '0.0045'
+				on_text: root.getSupport(self.text)
+		BoxLayout:
+			Label:
+				text: 'Confianza minima: '
+			TextInput:
+				multiline: False
+				size_hint: (0.7, 0.3)
+				pos_hint: {'center_x':0.5, 'center_y':0.44}
+				hint_text: '0.2'
+				on_text: root.getConfidence(self.text)
+		BoxLayout:
+			Label:
+				text: 'Elevacion minima: '
+			TextInput:
+				multiline: False
+				size_hint: (0.7, 0.3)
+				pos_hint: {'center_x':0.5, 'center_y':0.43}
+				hint_text: '3'
+				on_text: root.getLift(self.text)
+
+<TG>:
+	on_state: self.downFunc(self.Node) if self.state == 'down' else self.normalFunc(self.Node) 
+	size:(157, 27)
+	pos_hint: {'center_x': .5, 'center_y': .5}
+	size_hint: (None, None)
+
+<PearsonConfig>:
+	canvas:
+        Color:
+            rgba: [1, 1, 1, 0]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+<KMeansConfig>:
+	orientation: 'horizontal'
+	BoxLayout:
+		orientation: 'horizontal'
+		Label:
+			text: 'Numero de Clusters: '
+			pos_hint: {'center_x':1, 'center_y':0.9}
+		TextInput:
+			multiline: False
+			size_hint: (0.2, 0.3)
+			pos_hint: {'center_x':1, 'center_y':0.78}
+			hint_text: '1'
+			on_text: root.getnClusters(self.text)
+
+
+<LOGISTICConfig>:
+	orientation: 'vertical'
+
+
+<TextInput>:
+	size_hint: (1, 1)
+	pos_hint: {'center_x':0.5, 'center_y':0.5}
+	foreground_color: [7,7,7,1]
+	background_color: [0,0,0,1]
+	cursor_color: [1,1,1,1]
+	font_size: 16
+    canvas:
+        Color: 
+        	rgb: (1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size

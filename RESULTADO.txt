@@ -1,0 +1,21 @@
+Intercept: 11.723469375631597
+Coeficientes: 
+[-0.1908854  -0.0106113  -2.27353782 -3.0783869  -0.87661688 -0.2123106 ]
+
+Exactitud: 0.9298245614035088
+
+Summary:
+              precision    recall  f1-score   support
+
+           0       0.95      0.87      0.91        45
+           1       0.92      0.97      0.94        69
+
+    accuracy                           0.93       114
+   macro avg       0.93      0.92      0.93       114
+weighted avg       0.93      0.93      0.93       114
+
+
+Predicción   0   1
+Real              
+0           39   6
+1            2  67
